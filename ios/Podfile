@@ -1,0 +1,81 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '12.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_application_path
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', '..', '..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_APPLICATION_PATH\s*=\s*(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_APPLICATION_PATH not found in #{generated_xcode_build_settings_path}. This is likely an issue with the generated project. Please run `flutter create --platforms ios` to generate a new project"
+end
+
+def parse_KV_file(file, separator='=')
+  file_name = file
+  generated_key_values = {}
+  skip_line_start_symbols = ['#', '/']
+  File.foreach(file_name) do |line|
+    next if skip_line_start_symbols.any? { |symbol| line = line.strip; line.start_with?(symbol) }
+    plugin = line.split(separator)
+    if plugin.length == 2
+      p plugin[0].strip => plugin[1].strip
+      generated_key_values[plugin[0].strip] = plugin[1].strip
+    end
+  end
+  generated_key_values
+end
+
+# Load the shared configurations
+flutter_application_path = File.expand_path(flutter_application_path)
+shared_podspec_path = File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
+podspec_hash = parse_KV_file(File.join(flutter_application_path, '.ios', 'Flutter', 'podspecs', 'FlutterModule.podspec'))
+
+platform :ios, podspec_hash['platform']
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  # Flutter Pods
+  copied_flutter_dir = File.join(__dir__, 'Flutter')
+  generated_plugin_registrant = File.join(__dir__, 'GeneratedPluginRegistrant')
+
+  pod 'Flutter', :path => copied_flutter_dir
+  pod 'GeneratedPluginRegistrant', :path => generated_plugin_registrant
+
+  # Pods for WhirlDroid
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+
+  target 'RunnerUITests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+    
+    # Add these if you need to build for older iOS versions
+    target.build_configurations.each do |config|
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
+        '$(inherited)',
+        'PERMISSION_NOTIFICATIONS=1',
+      ]
+    end
+  end
+end
