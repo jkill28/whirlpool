@@ -36,11 +36,11 @@ class WhirldroidApp extends StatelessWidget {
           elevation: 4,
           shadowColor: Colors.orange,
         ),
-        cardTheme: CardTheme(
-          color: const Color(0xFF1E1E1E),
+        cardTheme: const CardThemeData(
+          color: Color(0xFF1E1E1E),
           elevation: 2,
-          shadowColor: Colors.orange.withOpacity(0.3),
-          margin: const EdgeInsets.all(8),
+          shadowColor: Colors.orange,
+          margin: EdgeInsets.all(8),
         ),
         listTileTheme: ListTileThemeData(
           tileColor: const Color(0xFF1E1E1E),

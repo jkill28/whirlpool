@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/thread.dart' as thread_model;
+import '../models/thread.dart';
 import '../services/api_service.dart';
 import 'threads_screen.dart';
 

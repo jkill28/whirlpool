@@ -1,14 +1,14 @@
 class Thread {
-  final String id;
-  final String title;
-  final String forum;
-  final String author;
-  final DateTime lastPostDate;
-  final int replyCount;
-  final bool isSticky;
-  final bool isClosed;
-  final bool isWatched;
-  final bool hasNewPosts;
+  String id;
+  String title;
+  String forum;
+  String author;
+  DateTime lastPostDate;
+  int replyCount;
+  bool isSticky;
+  bool isClosed;
+  bool isWatched;
+  bool hasNewPosts;
 
   Thread({
     required this.id,

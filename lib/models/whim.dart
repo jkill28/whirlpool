@@ -1,10 +1,10 @@
 class Whim {
-  final String id;
-  final String title;
-  final String content;
-  final String author;
-  final DateTime postDate;
-  final bool isRead;
+  String id;
+  String title;
+  String content;
+  String author;
+  DateTime postDate;
+  bool isRead;
 
   Whim({
     required this.id,
