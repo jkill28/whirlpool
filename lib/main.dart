@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:whirldroid/screens/main_screen.dart';
-import 'package:whirldroid/models/settings.dart';
+import 'screens/main_screen.dart';
+import 'models/settings.dart';
 
 void main() {
   runApp(
