@@ -1,4 +1,4 @@
-group 'com.gregdev.whirldroid'
+group 'com.chouni.whirlpool'
 version '1.0.0'
 
 buildscript {
@@ -22,7 +22,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.gregdev.whirldroid'
+    namespace 'com.chouni.whirlpool'
     compileSdk 34
 
     lintOptions {
@@ -30,7 +30,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.gregdev.whirldroid"
+        applicationId "com.chouni.whirlpool"
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 1
