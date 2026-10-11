@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:whirldroid/screens/main_screen.dart';
+import 'package:whirldroid/models/settings.dart';
 
 void main() {
-  runApp(const WhirldroidApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SettingsProvider(),
+      child: const WhirldroidApp(),
+    ),
+  );
 }
 
 class WhirldroidApp extends StatelessWidget {

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'threads_screen.dart';
 import 'whims_screen.dart';
 import 'forums_screen.dart';
 import 'watched_screen.dart';
+import 'settings_screen.dart';
+import '../models/settings.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
